@@ -1,5 +1,11 @@
 <?php
 
+
+class FileNotFoundException extends Exception
+{
+
+}
+
 class MazeReader
 {
 
@@ -7,6 +13,10 @@ class MazeReader
 
     function MazeReader($filename)
     {
+        if (!file_exists($filename)) {
+            throw new FileNotFoundException();
+        }
+
         $this->file = $filename;
     }
 

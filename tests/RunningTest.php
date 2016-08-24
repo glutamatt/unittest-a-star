@@ -31,4 +31,13 @@ class RunningTest extends \PHPUnit\Framework\TestCase
         $out = fread($output, 1000);
         $this->assertEquals($answer, $out);
     }
+
+    public function testException()
+    {
+        $file = '/tmp/test' . mt_rand();
+        file_put_contents($file, mt_rand());
+        new MazeReader($file);
+        $this->expectException(FileNotFoundException::class);
+        new MazeReader('tototo');
+    }
 }
