@@ -2,24 +2,24 @@
 
 class RunningTest extends \PHPUnit\Framework\TestCase
 {
-    public function testRun1()
+    public function getMazes()
     {
-        $answer = <<<OPT
-Steps: 31
-Time:  ???
+        return [
+            ['maze1.txt', 'solution1.txt'],
+            ['maze2.txt', 'solution1.txt'],
+            ['maze3.txt', 'solution1.txt'],
+            ['tiny.txt', 'solution1.txt'],
+        ];
+    }
 
-WWWWWWWWWWWW
-WXXXW SXXWXE
-WXWXXWWWXWXW
-WXW XXXXXWXW
-WXWWWWWWWWXW
-WXXXXXXXXXXW
-WWWWWWWWWWWW
-31
+    /**
+     * @dataProvider getMazes
+     */
+    public function testRun1($mazeFile, $solutionFile)
+    {
+        $answer = file_get_contents('/home/matt/projects/deezer/workshop-phpunit/astar-php/examples/solutions/' . $solutionFile);
+        $mrdr = new MazeReader('/home/matt/projects/deezer/workshop-phpunit/astar-php/examples/mazes/' . $mazeFile);
 
-OPT;
-
-        $mrdr = new MazeReader('/home/matt/projects/deezer/workshop-phpunit/astar-php/examples/mazes/maze1.txt');
         $maze = $mrdr->read();
         $solver = new AStarSolver();
         $path = $solver->solve($maze);
