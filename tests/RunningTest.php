@@ -6,9 +6,9 @@ class RunningTest extends \PHPUnit\Framework\TestCase
     {
         return [
             ['maze1.txt', 'solution1.txt'],
-            ['maze2.txt', 'solution1.txt'],
-            ['maze3.txt', 'solution1.txt'],
-            ['tiny.txt', 'solution1.txt'],
+            ['maze2.txt', 'sol2.txt'],
+            ['maze3.txt', 'sol3'],
+            ['tiny.txt', 'tiny.txt'],
         ];
     }
 
@@ -28,6 +28,7 @@ class RunningTest extends \PHPUnit\Framework\TestCase
         $mwrt->write('text/plain');
 
         fseek($output, 0);
-        $this->assertEquals($answer, fread($output, 1000));
+        $out = fread($output, 1000);
+        $this->assertEquals($answer, $out);
     }
 }
