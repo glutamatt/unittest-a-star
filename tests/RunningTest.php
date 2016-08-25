@@ -2,6 +2,18 @@
 
 class RunningTest extends \PHPUnit\Framework\TestCase
 {
+    protected $output;
+
+    protected function setUp()
+    {
+        $this->output = fopen('php://memory', 'x+');
+    }
+
+    protected function tearDown()
+    {
+        fclose($this->output);
+    }
+
     public function getMazes()
     {
         return [
@@ -23,13 +35,19 @@ class RunningTest extends \PHPUnit\Framework\TestCase
         $maze = $mrdr->read();
         $solver = new AStarSolver();
         $path = $solver->solve($maze);
-        $output = fopen('php://memory', 'x+');
-        $mwrt = new MazeWriter($maze, $path, $output);
+        $mwrt = new MazeWriter($maze, $path, $this->output);
         $mwrt->write('text/plain');
 
-        fseek($output, 0);
-        $out = fread($output, 1000);
+        fseek($this->output, 0);
+        $out = fread($this->output, 1000);
         $this->assertEquals($answer, $out);
+    }
+
+    public function testOutput()
+    {
+        fwrite($this->output, 'toto2');
+        fseek($this->output, 0);
+        $this->assertEquals('toto', fread($this->output, 4));
     }
 
     public function testException()
