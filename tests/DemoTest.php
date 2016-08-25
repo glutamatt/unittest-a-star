@@ -4,7 +4,7 @@ class DemoTest extends PHPUnit_Framework_TestCase
 {
     public function testDemo()
     {
-        $this->assertTrue(1 === 1);
+        $this->assertTrue(1 === 2);
 
         $this->assertEquals(2 , 1 + 1, '3  === test ===  1 + 1');
 
@@ -13,6 +13,6 @@ class DemoTest extends PHPUnit_Framework_TestCase
 
     public function testFail()
     {
-        $this->assertTrue(43 === 43);
+        $this->assertTrue(43 === 42);
     }
 }
