@@ -15,4 +15,15 @@ class DemoTest extends PHPUnit_Framework_TestCase
     {
         $this->assertTrue(43 === 43);
     }
+
+    public function testQuiSePlanteTropSouvent()
+    {
+        $this->markTestSkipped('Fix this random test');
+        $this->assertGreaterThan(10, mt_rand(0, 20));
+    }
+
+    public function testAfaireMaisFlemme()
+    {
+        $this->markTestIncomplete('Too Lazy but worth it');
+    }
 }
