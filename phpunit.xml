@@ -1,2 +1,10 @@
 <phpunit bootstrap="loader.php" colors="true">
+    <testsuites>
+        <testsuite name="all">
+            <directory>tests/</directory>
+        </testsuite>
+        <testsuite name="demo">
+            <file>tests/DemoTest.php</file>
+        </testsuite>
+    </testsuites>
 </phpunit>
