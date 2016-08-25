@@ -14,7 +14,7 @@ class MazeTest extends \PHPUnit\Framework\TestCase
         $m->setStartNode(23);
         $this->assertEquals(23 , $m->getStartIndex());
 
-        $m->setGoalNode(53);
+        $m->setGoalNode(55);
 
         $this->assertEquals(55, $m->getGoalIndex());
     }
